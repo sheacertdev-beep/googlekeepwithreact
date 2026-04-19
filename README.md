@@ -1,73 +1,115 @@
-# Google Keep — React
+#  Google Keep Using React 
 
-A pixel-faithful React rewrite of your Google Keep clone, split into clean, composable components.
+A clone of [Google Keep](https://keep.google.com) built with **React**. It Has the core features you'd expect i.e. notes, pinning, drag-and-drop reordering, dark mode.
 
-## Project Structure
-
-```
-src/
-├── index.js          # React entry point
-├── index.css         # Global styles, CSS variables (light + dark mode)
-├── App.js            # Root component — all state lives here
-│
-├── Navbar.js         # Top navigation bar
-├── Navbar.css
-│
-├── Sidebar.js        # Collapsible left sidebar
-├── Sidebar.css
-│
-├── Form.js           # Note creation form (collapsed ↔ expanded)
-├── Form.css
-│
-├── Notes.js          # Note grid with drag-and-drop, section labels
-├── Notes.css
-│
-├── Note.js           # Individual note card (pin, archive, delete, drag)
-├── Note.css
-│
-├── Modal.js          # Edit-note modal overlay
-└── Modal.css
-
-public/
-└── index.html        # HTML shell (loads Material Symbols font)
-```
+---
 
 ## Features
 
-| Feature | Where |
+| Feature | Description |
 |---|---|
-| Add notes (title + text) | `Form.js` |
-| Delete notes | `Note.js` → `App.js` |
-| Pin / unpin notes | `Note.js`, `Modal.js` → `App.js` |
-| Archive notes | `Note.js` → `App.js` |
-| Edit notes in modal | `Modal.js` → `App.js` |
-| Drag-and-drop reorder | `Notes.js` → `App.js` |
-| Dark / light mode toggle | `Navbar.js` → `App.js` |
-| Search / filter notes | `Navbar.js` → `App.js` |
-| Pinned notes section | `Notes.js` |
-| Persists to localStorage | `App.js` |
+|  **Create Notes** | Collapsed input expands into a full title + text form |
+|  **Pin Notes** | Pin any note to keep it at the top; pinned notes get their own section |
+|  **Edit Notes** | Click a note to open a modal editor; changes save on close |
+|  **Delete Notes** | Three-dot menu on each card reveals a "Delete note" option |
+|  **Dark / Light Mode** | Toggle from the settings menu; preference persists across sessions |
+|  **Drag & Drop** | Drag cards to reorder them , native HTML5 Drag API, no library needed |
+|  **Persistent Storage** | All notes and theme preference saved to `localStorage` |
+|  **Responsive** | Works on desktop, tablet, and mobile |
 
-## Getting Started
+---
+## Project Structure
+
+```
+keep-react/
+├── public/
+│   └── index.html          # HTML shell — loads Material Symbols font
+│
+├── src/
+│   ├── index.js            # React entry point
+│   ├── index.css           # Global styles, CSS variables (light + dark)
+│   │
+│   ├── App.js              # Root — all shared state + business logic
+│   │
+│   ├── Navbar.js           # Top bar: logo, search, settings, dark toggle
+│   ├── Navbar.css
+│   │
+│   ├── Sidebar.js          # Collapsible left nav (expands on hover)
+│   ├── Sidebar.css
+│   │
+│   ├── Form.js             # Note creation form (collapsed ↔ expanded)
+│   ├── Form.css
+│   │
+│   ├── Notes.js            # Note grid — drag events + section labels
+│   ├── Notes.css
+│   │
+│   ├── Note.js             # Single note card — pin, archive, delete, drag
+│   ├── Note.css
+│   │
+│   ├── Modal.js            # Edit-note overlay
+│   └── Modal.css
+│
+├── package.json
+└── README.md
+```
+
+---
+
+##  Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) v16 or higher
+- npm (comes with Node) or yarn
+
+### Installation
 
 ```bash
-# Install dependencies
+# 1. Clone the repo
+git clone https://github.com/your-username/keep-react.git
+cd keep-react
+
+# 2. Install dependencies
 npm install
 
-# Start dev server (http://localhost:3000)
+# 3. Start the dev server
 npm start
+```
 
-# Production build
+The app will open at **http://localhost:3000** automatically.
+
+### Build for Production
+
+```bash
 npm run build
 ```
 
-## How State Flows
+Outputs an optimised production bundle to the `build/` folder.
 
-```
-App.js  (notes[], darkMode, openNote, searchQuery)
-  ├── Navbar      ← receives darkMode, onToggleDark, searchQuery, onSearch
-  ├── Sidebar     (stateless — no props needed)
-  ├── Form        ← onAddNote
-  ├── Notes       ← notes[], onDelete, onPin, onArchive, onOpenNote, onReorder
-  │     └── Note  ← individual note + drag handlers
-  └── Modal       ← openNote, onClose (saves edits back to App)
-```
+
+
+---
+
+##  Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| [React 18](https://react.dev/) | UI framework |
+| CSS Custom Properties | Theming system (dark / light mode) |
+| HTML5 Drag and Drop API | Note reordering |
+| `localStorage` | Persisting notes and theme preference |
+| [Material Symbols](https://fonts.google.com/icons) | Icon set (variable font) |
+| [Google Fonts](https://fonts.google.com/) | Typography |
+
+No UI component libraries. No state management libraries. Just React and the browser platform.
+
+---
+
+
+##  License
+
+This project is for educational purposes. Google Keep is a product of Google LLC — this clone is not affiliated with or endorsed by Google.
+
+---
+
+
