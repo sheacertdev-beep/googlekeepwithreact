@@ -1,13 +1,127 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap");
+
+*, *::before, *::after {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --bg: #ffffff;
+  --text: #202124;
+  --muted: #5f6368;
+  --placeholder: #9aa0a6;
+  --surface: #ffffff;
+  --surface-soft: #f1f3f4;
+  --border: #dadce0;
+  --note-border: #e0e0e0;
+  --sidebar-active-bg: #fef0c3;
+  --modal-overlay: rgba(0, 0, 0, 0.5);
+  --focus: #1a73e8;
+  --icon-hover-bg: rgba(95, 99, 104, 0.1);
+  --shadow-sm: 0 1px 2px rgba(60,64,67,.3), 0 2px 6px rgba(60,64,67,.15);
+  --shadow-md: 0 4px 12px rgba(60,64,67,.25), 0 8px 24px rgba(60,64,67,.15);
+  --font-sans: "Roboto", sans-serif;
+  --font-display: "Google Sans", "Roboto", sans-serif;
+  --transition: 0.15s ease;
+}
+
+body.dark-mode {
+  --bg: #202124;
+  --text: #e8eaed;
+  --muted: #9aa0a6;
+  --placeholder: #9aa0a6;
+  --surface: #2d2e30;
+  --surface-soft: #303134;
+  --border: #3c4043;
+  --note-border: #5f6368;
+  --sidebar-active-bg: #4a4530;
+  --modal-overlay: rgba(0, 0, 0, 0.72);
+  --focus: #8ab4f8;
+  --icon-hover-bg: rgba(232, 234, 237, 0.08);
+}
+
+html {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  min-height: 100dvh;
+  touch-action: manipulation;
+  transition: background var(--transition), color var(--transition);
+}
+
+input:focus {
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-sans);
+}
+
+/* Material Icons */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  user-select: none;
+}
+
+/* Icon button base */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+  position: relative;
+}
+
+.icon-btn:hover {
+  background: var(--icon-hover-bg);
+  color: var(--text);
+}
+
+/* Tooltip */
+.tooltip-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.tooltip-wrap .tip {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #323232;
+  color: #fff;
+  font-size: 0.72rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s;
+  z-index: 100;
+}
+
+.tooltip-wrap:hover .tip {
+  opacity: 0.9;
+  visibility: visible;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .tooltip-wrap .tip { display: none; }
 }

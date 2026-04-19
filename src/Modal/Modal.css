@@ -1,0 +1,108 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--modal-overlay);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal-content {
+  background: var(--surface);
+  border-radius: 10px;
+  width: min(600px, 100%);
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.32);
+  animation: slideUp 0.18s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.modal-form input {
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-sans);
+  width: 100%;
+  caret-color: var(--focus);
+}
+
+.modal-form input:focus {
+  outline: none;
+}
+
+.modal__title-input {
+  font-size: 1.05rem;
+  font-weight: 500;
+  padding: 4px;
+  margin-bottom: 8px;
+}
+
+.modal__text-input {
+  font-size: 0.95rem;
+  padding: 4px;
+  min-height: 80px;
+  line-height: 1.5;
+  resize: none;
+}
+
+.modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.modal__icons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.modal__close-btn {
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  padding: 8px 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.modal__close-btn:hover {
+  background: var(--icon-hover-bg);
+}
+
+/* Pin button inside modal — always visible */
+.modal-pin-btn {
+  opacity: 1 !important;
+}
+
+.modal-pin-btn.pinned {
+  color: var(--text);
+  font-variation-settings: "FILL" 1;
+}

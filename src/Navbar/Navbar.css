@@ -1,0 +1,132 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  height: 64px;
+  border-bottom: 1px solid var(--border);
+  padding: 8px 12px;
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+/* Logo */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.navbar__logo img {
+  width: 40px;
+  height: 40px;
+}
+
+.navbar__logo-text {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* Search */
+.navbar__search {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 692px;
+  height: 48px;
+  background: var(--surface-soft);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  transition: box-shadow var(--transition), background var(--transition);
+}
+
+.navbar__search:focus-within {
+  box-shadow: var(--shadow-sm);
+  background: var(--surface);
+}
+
+.navbar__search input {
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 1rem;
+  flex: 1;
+  padding: 0 8px;
+  font-family: var(--font-sans);
+}
+
+.navbar__search input::placeholder {
+  color: var(--placeholder);
+}
+
+/* Actions */
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+/* Settings dropdown */
+.settings-wrapper {
+  position: relative;
+}
+
+.settings-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-width: 220px;
+  box-shadow: var(--shadow-md);
+  z-index: 200;
+  padding: 6px 0;
+  animation: dropIn 0.12s ease;
+}
+
+.settings-dropdown.open {
+  display: block;
+}
+
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.settings-dropdown__item {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: background var(--transition);
+}
+
+.settings-dropdown__item:hover {
+  background: var(--surface-soft);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .navbar__logo-text {
+    display: none;
+  }
+  .navbar__actions .hide-sm {
+    display: none;
+  }
+}

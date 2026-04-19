@@ -1,0 +1,158 @@
+.note {
+  background: var(--surface);
+  border: 1px solid var(--note-border);
+  border-radius: 10px;
+  margin: 8px;
+  flex: 1 1 240px;
+  min-width: 200px;
+  max-width: 360px;
+  position: relative;
+  cursor: pointer;
+  transition: box-shadow var(--transition), border-color var(--transition), opacity 0.2s;
+}
+
+.note:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.note.dragging {
+  opacity: 0.45;
+  cursor: grabbing;
+}
+
+.note.drag-over {
+  border: 2px dashed var(--focus);
+  box-shadow: 0 0 0 2px rgba(26,115,232,0.15);
+}
+
+/* Pin button */
+.note__pin {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.15s;
+  color: var(--muted);
+  font-variation-settings: "FILL" 0;
+}
+
+.note:hover .note__pin,
+.note__pin.pinned {
+  opacity: 1;
+}
+
+.note__pin.pinned {
+  color: var(--text);
+  font-variation-settings: "FILL" 1;
+}
+
+/* Content */
+.note__title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text);
+  padding: 14px 40px 0 14px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.note__text {
+  font-size: 0.875rem;
+  color: var(--text);
+  padding: 8px 14px 0;
+  line-height: 1.5;
+  word-break: break-word;
+  opacity: 0.87;
+}
+
+/* Footer toolbar */
+.note__footer {
+  display: flex;
+  align-items: center;
+  padding: 4px 6px;
+  margin-top: 8px;
+  visibility: hidden;
+  gap: 2px;
+}
+
+.note:hover .note__footer {
+  visibility: visible;
+}
+
+.note__footer .icon-btn {
+  width: 34px;
+  height: 34px;
+}
+
+.note__footer .material-symbols-outlined {
+  font-size: 18px;
+}
+
+/* More menu */
+.more-menu-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.more-menu {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  min-width: 148px;
+  box-shadow: var(--shadow-md);
+  z-index: 50;
+  padding: 4px 0;
+  animation: popUp 0.1s ease;
+}
+
+.more-menu.open {
+  display: block;
+}
+
+@keyframes popUp {
+  from { opacity: 0; transform: translateX(-50%) translateY(6px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.more-menu__item {
+  display: block;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  padding: 9px 16px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: background var(--transition);
+  white-space: nowrap;
+}
+
+.more-menu__item:hover {
+  background: var(--surface-soft);
+}
+
+/* Touch: always show footer & pin */
+@media (hover: none) and (pointer: coarse) {
+  .note__footer {
+    visibility: visible;
+  }
+  .note__pin {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .note {
+    flex: 1 1 100%;
+    max-width: 100%;
+    margin: 6px 8px;
+  }
+}
